@@ -1,3 +1,4 @@
+
 const makeBlackSquare = (x, y) => {
   const div = document.createElement('div')
 
@@ -10,7 +11,9 @@ const makeBlackSquare = (x, y) => {
   document.body.appendChild(div)
 }
 
-const render = () => {
+const render = (positionsOfSquares) => {
+  if (!positionsOfSquares) return
+
   document.body.innerHTML = ''
 
   positionsOfSquares.forEach((position) => {
@@ -18,22 +21,23 @@ const render = () => {
   })
 }
 
-const positionsOfSquares = [
-  { x: 200, y: 100 },
-  { x: 300, y: 100 },
-  { x: 300, y: 200 },
-  { x: 300, y: 300 },
-]
-
-render()
+const dbRef = firebase.database().ref('/squares')
 
 document.body.addEventListener(
   'click',
   (event) => {
-    firebase.database().ref('/squares').push(
+    dbRef.push(
       { x: event.pageX, y: event.pageY }
     )
 
     render()
+  }
+)
+
+dbRef.on(
+  'value',
+  (snapshot) => {
+    const positionsOfSquares = Object.values(snapshot.val())
+    render(positionsOfSquares)
   }
 )
