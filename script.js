@@ -10,13 +10,6 @@ const makeBlackSquare = (x, y) => {
   document.body.appendChild(div)
 }
 
-const positionsOfSquares = [
-  { x: 200, y: 100 },
-  { x: 300, y: 100 },
-  { x: 300, y: 200 },
-  { x: 300, y: 300 },
-]
-
 const render = () => {
   document.body.innerHTML = ''
 
@@ -25,4 +18,22 @@ const render = () => {
   })
 }
 
+const positionsOfSquares = [
+  { x: 200, y: 100 },
+  { x: 300, y: 100 },
+  { x: 300, y: 200 },
+  { x: 300, y: 300 },
+]
+
 render()
+
+document.body.addEventListener(
+  'click',
+  (event) => {
+    positionsOfSquares.push(
+      { x: event.pageX, y: event.pageY }
+    )
+
+    render()
+  }
+)
