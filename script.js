@@ -30,7 +30,7 @@ render()
 document.body.addEventListener(
   'click',
   (event) => {
-    positionsOfSquares.push(
+    firebase.database().ref('/squares').push(
       { x: event.pageX, y: event.pageY }
     )
 
