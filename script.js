@@ -17,6 +17,12 @@ const positionsOfSquares = [
   { x: 300, y: 300 },
 ]
 
-positionsOfSquares.forEach((position) => {
-  makeBlackSquare(position.x, position.y)
-})
+const render = () => {
+  document.body.innerHTML = ''
+
+  positionsOfSquares.forEach((position) => {
+    makeBlackSquare(position.x, position.y)
+  })
+}
+
+render()
