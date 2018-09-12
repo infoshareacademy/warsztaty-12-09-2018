@@ -16,7 +16,17 @@ window.addEventListener(
     const render = (positionsOfSquares) => {
       if (!positionsOfSquares) return
 
+      const maxX = Math.max(
+        ...positionsOfSquares.map(position => position.x)
+      )
+      const maxY = Math.max(
+        ...positionsOfSquares.map(position => position.y)
+      )
+
       document.body.innerHTML = ''
+
+      document.body.style.width = (maxX + 10) + 'px'
+      document.body.style.height = (maxY + 10) + 'px'
 
       positionsOfSquares.forEach((position) => {
         makeBlackSquare(position.x, position.y)
@@ -40,6 +50,7 @@ window.addEventListener(
       'value',
       (snapshot) => {
         const positionsOfSquares = Object.values(snapshot.val())
+
         render(positionsOfSquares)
       }
     )
