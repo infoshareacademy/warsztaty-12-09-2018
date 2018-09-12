@@ -10,6 +10,13 @@ const makeBlackSquare = (x, y) => {
   document.body.appendChild(div)
 }
 
-makeBlackSquare(200, 100)
-makeBlackSquare(300, 100)
+const positionsOfSquares = [
+  { x: 200, y: 100 },
+  { x: 300, y: 100 },
+  { x: 300, y: 200 },
+  { x: 300, y: 300 },
+]
 
+positionsOfSquares.forEach((position) => {
+  makeBlackSquare(position.x, position.y)
+})
